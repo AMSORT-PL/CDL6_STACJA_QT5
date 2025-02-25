@@ -69,8 +69,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -82,8 +85,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -95,8 +101,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -108,8 +117,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #9380ff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -121,8 +133,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -134,8 +149,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -147,8 +165,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -160,8 +181,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -173,8 +197,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -221,8 +248,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -234,8 +264,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -247,8 +280,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -260,8 +296,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -273,8 +312,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -286,8 +328,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -299,8 +344,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -312,8 +360,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -325,8 +376,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -338,8 +392,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -351,8 +408,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -364,8 +424,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -377,8 +440,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -390,8 +456,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -403,8 +472,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -416,8 +488,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -429,8 +504,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -442,8 +520,11 @@
          <height>100</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #639fff;</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string/>
        </property>
       </widget>
      </item>

@@ -20,10 +20,15 @@ Layout1::Layout1(PHSBackend* _phs, QWidget *parent) :
    layout->addWidget(actionPanel);
    ui->action_frame->setLayout(layout);
 
+   connect(actionPanel, &ActionPanel::ean_button_clicked, this, &Layout1::ean_button_clicked);
 }
 
 QList<QPushButton*> Layout1::getButtons() const {
     return buttons;
+}
+
+void Layout1::ean_button_clicked() {
+    emit ean_button_clicked_forward();
 }
 
 void Layout1::assignButtons() {

@@ -6,6 +6,7 @@
 #include "layout1.h"
 #include <QPushButton>
 #include <QSettings>
+#include "keyboardnumdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,12 +30,15 @@ private:
     int actualLanguageint;
     bool flagConnectPHS;
     LayoutBase *buttonsWidget;
-
+    KeyboardNumDialog *keyboardNumDialog();
 
 signals:
     void openCont();
     void openReason();
     void showOnTopIfVisible();
+
+private slots:
+    void on_ean_button_clicked();
 };
 
 #endif // MAINWINDOW_H

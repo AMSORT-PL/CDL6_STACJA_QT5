@@ -15,6 +15,12 @@ public:
     explicit ActionPanel(QWidget *parent = nullptr);
     ~ActionPanel();
 
+private slots:
+    void on_ean_button_clicked();
+
+signals:
+    void ean_button_clicked();
+
 private:
     Ui::ActionPanel *ui;
 };

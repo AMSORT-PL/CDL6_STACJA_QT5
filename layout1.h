@@ -37,6 +37,7 @@ private:
 
 private slots:
     void buttonClicked();
+    void ean_button_clicked();
 };
 
 #endif // LAYOUT1_H

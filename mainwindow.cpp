@@ -15,7 +15,8 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
     ui->setupUi(this);
 
 
-     buttonsWidget = new Layout1(phs, this);
+    buttonsWidget = new Layout1(phs, this);
+
 
     QVBoxLayout *layout = new QVBoxLayout(ui->buttonFrame);
     layout->addWidget(buttonsWidget);
@@ -33,6 +34,12 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
 
     } );
     t->start();
+
+    connect(buttonsWidget, &LayoutBase::ean_button_clicked_forward, this, &MainWindow::on_ean_button_clicked);
+}
+
+void MainWindow::on_ean_button_clicked() {
+
 }
 
 MainWindow::~MainWindow()

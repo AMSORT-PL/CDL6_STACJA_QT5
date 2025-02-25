@@ -12,9 +12,6 @@ PopUp::PopUp(PHSBackend* _phs, QWidget *parent) :
     phs->registerObject(13, ui->komunikat);
     phs->registerObject(20, ui->zatwierdz);
     phs->registerObject(19, ui->anuluj);
-
-    connect(phs, &PHSBackend::switchToDarkMode, this, &PopUp::setDarkMode);
-    connect(phs, &PHSBackend::switchToLightMode, this, &PopUp::setLightMode);
 }
 
 PopUp::~PopUp()

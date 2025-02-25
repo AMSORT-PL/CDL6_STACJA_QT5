@@ -2,6 +2,7 @@
 #ifdef Q_OS_WIN
 #	define _WINNT_WIN32 0x0775
 #endif
+
 #include <iostream>
 
 #include <QNetworkInterface>
@@ -127,15 +128,10 @@ PHSBackend::PHSBackend(QHostAddress const& host, quint16 port, IAuthenticator* a
     , connectionHost(host)
     , connectionPort(port)
     , connectionAuthenticator(authenticator)
-    , connection(0)
-    , connectionOk(false)
     , inFrameLen(NOT_IN_FRAME)
-    , connectionState(State::DISCONNECTED)
     , identifier()
 {
-    timer.setInterval(DEFAULT_PHS_RECONNECT_INTERVAL);
-    timer.setSingleShot(true);
-    connect(&timer, SIGNAL(timeout()), this, SLOT(onTimeElapsed()));
+    socket.connectToHost(connectionHost, connectionPort);
 }
 
 PHSBackend::PHSBackend(QHostAddress const& host, quint16 port, IAuthenticator* authenticator, QByteArray const & _ident, QObject *parent)
@@ -143,15 +139,55 @@ PHSBackend::PHSBackend(QHostAddress const& host, quint16 port, IAuthenticator* a
     , connectionHost(host)
     , connectionPort(port)
     , connectionAuthenticator(authenticator)
-    , connection(0)
-    , connectionOk(false)
     , inFrameLen(NOT_IN_FRAME)
-    , connectionState(State::DISCONNECTED)
     , identifier(_ident)
 {
-    timer.setInterval(DEFAULT_PHS_RECONNECT_INTERVAL);
-    timer.setSingleShot(true);
-    connect(&timer, SIGNAL(timeout()), this, SLOT(onTimeElapsed()));
+    socket.connectToHost(connectionHost, connectionPort);
+}
+
+void PHSBackend::connectionHandler() {
+    QSet<Group*> oldGroups;
+    switch(socket.state()) {
+        case QAbstractSocket::ConnectedState:
+            qInfo() << "Connected";
+            for (IListModel* m : lists)
+                m->clear();
+            oldGroups.swap(groups);
+            for (Group* g : oldGroups)
+                g->free();
+            emit reset();
+            emit connected();
+            break;
+        case QAbstractSocket::UnconnectedState:
+            qInfo() << "Unconnected";
+            frameToSend.clear();
+            inFrameLen = NOT_IN_FRAME;
+            emit dataCheck();
+            emit noConnection();
+            reconnect.start();
+            break;
+        case QAbstractSocket::ConnectingState:
+            qInfo() << "Connecting to " << connectionHost << ":" << connectionPort;
+        break;
+        default:
+        break;
+    }
+}
+
+void PHSBackend::getBattInfo(QByteArray battery, quint8 currentBat) {
+    for (int i = 0; i < 4; i++)
+    {
+        batteryLevel[i] = battery.at(i);
+    }
+    emit batteryUpdate(battery, currentBat);
+}
+
+void PHSBackend::disconnectSocket(QString const& s = "") {
+    if(s != "")
+        qCritical() << "GUI forced disconnection, " << s;
+    else
+        qCritical() << "GUI forced disconnection";
+    socket.disconnectFromHost();
 }
 
 QByteArray PHSBackend::stringToInternetAddress(const char* str) {
@@ -229,144 +265,21 @@ void PHSBackend::registerListModel(TID id, IListModel* model) {
     lists.insert(id, model);
 }
 
-void PHSBackend::onConnected() {
-    connectionState = State::AUTHENTICATING;
-
-    std::cerr << "Connected" << std::endl;
-
-    connection->setSocketOption(QAbstractSocket::KeepAliveOption, 1);
-
-    connection->setSocketOption(QAbstractSocket::LowDelayOption, 1);
-
-    int sock = connection->socketDescriptor();
-    int optval;
-
-    optval = 10;
-    setsockopt(sock, IPPROTO_TCP, TCP_KEEPIDLE, (char *)(&optval), sizeof(optval));
-
-    optval = 4;
-    setsockopt(sock, IPPROTO_TCP, TCP_KEEPCNT, (char *)(&optval), sizeof(optval));
-
-    optval = 3;
-    setsockopt(sock, IPPROTO_TCP, TCP_KEEPINTVL, (char *)(&optval), sizeof(optval));
-
-    // Start counting ConnectionOK
-    timer.start();
-}
-
-void PHSBackend::onAuthenticated() {
-    connectionState = State::CONNECTED;
-    for (IListModel* m : lists)
-        m->clear();
-
-    QSet<Group*> oldGroups;
-    oldGroups.swap(groups);
-    for (Group* g : oldGroups)
-        g->free();
-
-    std::cerr << "authenticated" << std::endl;
-
-    emit reset();
-    emit connectionStatus(true);
-    connectionOn = true;
-    if(connectionOn)
-        qInfo() << "phsbackedn, connection true? : " ;
-}
-
-
-void PHSBackend::onDisconnected() {
-    if (connectionState == State::DISCONNECTED)
-        return;
-
-    qInfo() << "Changing state to disconnected";
-    connectionState = State::DISCONNECTED;
-    emit connectionStatus(false);
-
-    connectionOn = false;
-     if(!connectionOn)
-    qInfo() << "phsbackedn, connection false? : " ;
-    frameToSend.clear();
-    inFrameLen = NOT_IN_FRAME;
-
-    //std::cerr << "Deleting connection " << ((void*) connection) << std::endl;
-    connection->deleteLater();
-    connection = 0;
-
-    // Connection is OK after given interval of successfull work
-    // so we can start new connection immediately after disconnection.
-    // Otherwise (connection failed too fast after established) we have to wait
-    if (connectionOk) {
-        connectionOk = false;
-        startConnection();
-    }
+bool PHSBackend::isConnected() {
+    if(socket.state() == QAbstractSocket::ConnectedState)
+        return true;
     else
-        timer.start();
-}
-
-void PHSBackend::onSocketError(QAbstractSocket::SocketError socketError) {
-    std::cerr << "Backend socket error: " << socketError << std::endl;
-    onDisconnected();
-}
-
-
-void PHSBackend::onTimeElapsed() {
-    switch(connectionState) {
-    case CONNECTED:
-        connectionOk = true;
-        break;
-    case DISCONNECTED:
-        startConnection();
-        break;
-    default:
-        // nothing to do
-        break;
-    }
-}
-
-void PHSBackend::startConnection() {
-    //QTcpSocket* oldConnection = connection;
-    if (connection)
-        connection->deleteLater();
-
-    connection = new QTcpSocket();
-
-    /*
-    std::cerr << "Replaceing connection "
-              << ((void *) oldConnection) << " by "
-              << ((void *) connection) << std::endl;
-    */
-    std::cerr <<"start connection" << std::endl;
-
-    connectionState = State::CONNECTING;
-    connect(connection, SIGNAL(connected()), this, SLOT(onConnected()));
-    connect(connection, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
-    connect(connection, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
-    connect(connection, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onSocketError(QAbstractSocket::SocketError)));
-    connection->connectToHost(connectionHost, connectionPort);
-}
-
-void PHSBackend::setDarkMode(bool isDarkMode) {
-    this->isDarkMode = isDarkMode;
-
-    if(isDarkMode)
-        emit switchToDarkMode();
-    else
-        emit switchToLightMode();
-}
-
-bool PHSBackend::getDarkMode() {
-    return isDarkMode;
+        return false;
 }
 
 static char inbuffer[PHS_MAX_FRAME_LEN];
 void PHSBackend::onReadyRead() {
-    std::cerr << "onReadyRead" << std::endl;
     try {
         while (true) {
             if (inFrameLen == NOT_IN_FRAME) {
-                if (connection->bytesAvailable() < 4)
+                if (socket.bytesAvailable() < 4)
                     return;
-                QByteArray buf = connection->read(4);
+                QByteArray buf = socket.read(4);
                 QDataStream stream(buf);
                 qint32 len;
                 stream >> len;
@@ -381,10 +294,10 @@ void PHSBackend::onReadyRead() {
                 //std::cerr << "FRAME LEN " << inFrameLen << std::endl;
             }
             else {
-                if (connection->bytesAvailable() < inFrameLen)
+                if (socket.bytesAvailable() < inFrameLen)
                     return;
                 //std::cerr << "FRAME RECEIVED, len=" << inFrameLen << std::endl;
-                QDataStream stream(connection->read(inFrameLen));
+                QDataStream stream(socket.read(inFrameLen));
                 onProtocolFrame(stream);
                 inFrameLen = NOT_IN_FRAME;
             }
@@ -392,12 +305,7 @@ void PHSBackend::onReadyRead() {
     }
     catch(QException const& e) {
         std::cerr << "Exception processing received frame:\n\t" << e.what() << ".\nDisconnecting.\n";
-        onDisconnected();
     }
-}
-
-void PHSBackend::wakeScreen() {
-    QProcess::execute("xset dpms force on");
 }
 
 #define OPCODE_AUTH 0x01
@@ -460,9 +368,10 @@ void PHSBackend::onProtocolFrame(QDataStream& stream) {
             readQVariantVector(stream, opParam, params);
             switch(opParam) {
             case OPAUTH_OK:
-                onAuthenticated();
+                qInfo() << "OK";
                 break;
             case OPAUTH_REQ:
+                qInfo() << "REQ";
                 if (params[0].type() != QVariant::ByteArray)
                     throw PHSCommunicationException("OPAUTH_REQ bad parameter type");
                 QByteArray ba;
@@ -472,33 +381,17 @@ void PHSBackend::onProtocolFrame(QDataStream& stream) {
         case OPCODE_CALL:
         {
             id = getID(stream);
-            std::cerr << "OPCODE CALL(" << id << ") BEGIN" << std::endl;
+            std::cerr << "OPCODE CALL(" << id << ")" << std::endl;
             readQVariantVector(stream, opParam, params);
             auto proc = procs.find(id);
             if (proc != procs.end())
                 (*proc)->call(params);
-
-            switch(id) {
-            case 50: {
-                emit setDarkMode(false);
-                break;
-            }
-            case 51: {
-                emit setDarkMode(true);
-                break;
-            }
-            case 1000: {
-                wakeScreen();
-                break;
-                }
-            }
-
-            std::cerr << "OPCODE CALL(" << id << ") END" << std::endl;
         }
             break;
         case OPCODE_PROP:
             id = getID(stream);
             std::cerr << " OPCODE PROP(" << id << "),";
+
             readQVariantVector(stream, opParam, params);
             if (params.length() != 2)
                 throw PHSCommunicationException(QString("Invalid OPCODE_PROP parameters count %1 != %2").arg(opParam).arg(params.size()));
@@ -510,16 +403,16 @@ void PHSBackend::onProtocolFrame(QDataStream& stream) {
             QVariant propValS = propVal;
             propValS.convert(QVariant::String);
             auto objs = objects.find(id);
-            if (objs != objects.end()){
-                qInfo() << QString("Setting property %1 of object ID %2 to %3")
-                             .arg(propName).arg(id).arg(propValS.toString())
-                             .toUtf8().data();
+            if (objs != objects.end()) {
 
+                /*
+                std::cerr << QString("Setting property %1 of object ID %2 to %3")
+                             .arg(propName).arg(id).arg(propValS.toString())
+                             .toUtf8().data()
+                          << std::endl;
+                */
                 for (auto obj : *objs)
                     obj->setProperty(propName.toUtf8().data(), propVal);
-            }
-            else{
-                qInfo()<< "Dont find object with ID ="<< id;
             }
         }
             break;
@@ -528,24 +421,35 @@ void PHSBackend::onProtocolFrame(QDataStream& stream) {
             std::cerr << " OPCODE LIST(" << id << "),";
             {
                 auto list = lists.find(id);
-                if (list == lists.end()) {
-                    qInfo()<< "Dont find list with ID ="<< id;
-                }
+
                 switch (opParam) {
                 case OPLIST_CLEAR:
+                    std::cerr << "OPLIST_CLEAR" << std::endl;
                     if (list != lists.end())
                         (*list)->clear();
                     break;
                 case OPLIST_DEL:
+                    std::cerr << "OPLIST_DEL" << std::endl;
                     id = getID(stream);
                     if (list != lists.end())
                         (*list)->deleteRow(id);
                     break;
                 default:
+                    bool locTableFlag = false;
+                    if (id==1)
+                    {
+                        locTableFlag=true;
+                    }
                     id = getID(stream);
                     readQVariantVector(stream, opParam, params);
+
                     if (list != lists.end())
+                    {
                         (*list)->addOrReplaceRow(id, params);
+                        if (locTableFlag)
+                            emit locDataLoaded();
+                    }
+
                     break;
                 };
             }
@@ -577,9 +481,6 @@ void PHSBackend::sendAuthRspFrame(QByteArray const& nonce) {
 
 void PHSBackend::callPhsProc(TID id, const QVector<QVariant> &params) {
 
-    if(!connectionOn)
-        return;
-
     const quint8 opCode = OPCODE_CALL;
     const quint8 opParam = params.size();
 
@@ -597,8 +498,9 @@ void PHSBackend::callPhsProc(TID id, const QVector<QVariant> &params) {
 }
 
 void PHSBackend::sendFrames() {
-    if (frameToSend.length() <= 0 || ! connection)
+    if (frameToSend.length() <= 0 || !isConnected())
         return;
+    qInfo() << "SEND_FRAME";
     quint32 fLen = frameToSend.length();
     char bLen[] = {
         (char) ((fLen >> 24) & 0xFF),
@@ -607,7 +509,7 @@ void PHSBackend::sendFrames() {
         (char) (fLen & 0xFF)
     };
     frameToSend.prepend(bLen, 4);
-    qint64 sentLen = connection->write(frameToSend);
+    qint64 sentLen = socket.write(frameToSend);
     if (sentLen < frameToSend.length())
         throw PHSCommunicationException(QString("Cannot send fame (%1 sent, %2 expected)").arg(sentLen).arg(frameToSend.length()));
     frameToSend.clear();

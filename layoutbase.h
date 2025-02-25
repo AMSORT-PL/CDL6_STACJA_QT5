@@ -6,10 +6,15 @@
 #include <QList>
 
 class LayoutBase : public QWidget {
+    Q_OBJECT
 public:
     explicit LayoutBase(QWidget *parent = nullptr) : QWidget(parent) {}
-    virtual QList<QPushButton*> getButtons() const = 0;
     virtual ~LayoutBase() = default;
+
+    virtual QList<QPushButton*> getButtons() const = 0;
+
+signals:
+    void ean_button_clicked_forward();
 };
 
 #endif // LAYOUTBASE_H

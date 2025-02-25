@@ -36,7 +36,8 @@ SOURCES += \
     phsbasemodel.cpp \
     startwindow.cpp \
     dialreasonreduct.cpp \
-    popup.cpp
+    popup.cpp \
+    keyboardnumdialog.cpp
 
 HEADERS += \
     actionpanel.h \
@@ -50,7 +51,8 @@ HEADERS += \
     phsbasemodel.h \
     startwindow.h \
     dialreasonreduct.h \
-    popup.h
+    popup.h \
+    keyboardnumdialog.h
 
 FORMS += \
     actionpanel.ui \
@@ -58,7 +60,8 @@ FORMS += \
     mainwindow.ui \
     startwindow.ui \
     dialreasonreduct.ui \
-    popup.ui
+    popup.ui \
+    keyboardnumdialog.ui
 
 RESOURCES += \
     zasoby.qrc

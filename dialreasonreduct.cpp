@@ -17,9 +17,6 @@ DialReasonReduct::DialReasonReduct(PHSBackend* _phs, QWidget *parent) :
     phs->registerObject(26, ui->ajent);
     phs->registerObject(27, ui->zmianaSerii);
     phs->registerObject(28, ui->zamknij);
-
-    connect(phs, &PHSBackend::switchToDarkMode, this, &DialReasonReduct::setDarkMode);
-    connect(phs, &PHSBackend::switchToLightMode, this, &DialReasonReduct::setLightMode);
 }
 
 DialReasonReduct::~DialReasonReduct()

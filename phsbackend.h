@@ -15,6 +15,7 @@
 #include <QAbstractTableModel>
 #include <QHostAddress>
 #include <QProcess>
+#include "confighandler.h"
 
 #define DEFAULT_PHS_RECONNECT_INTERVAL 15000 /* ms */
 
@@ -53,11 +54,15 @@ public:
 
 signals:
     void connectionStatus(bool connected);
-
     void reset();
-
-    void switchToDarkMode();
-    void switchToLightMode();
+    void locDataLoaded();
+    void dataCheck();
+    void wifiUpdate(int value);
+    void noWifiSignal();
+    void minimizeMap();
+    void batteryUpdate(QByteArray battery, quint8 currentBat);
+    void noConnection();
+    void connected();
 
 public:
 
@@ -85,10 +90,8 @@ public:
 
     void startConnection();
     void sendFrames();
+    bool isConnected();
 
-    void setDarkMode(bool isDarkMode);
-
-    bool getDarkMode();
     /** Conversion form IP (either v4 or v6) literal to its byte representation.
      *
      *  Completely lacking in Qt library.
@@ -98,32 +101,36 @@ private:
     const QHostAddress connectionHost;
     const quint16 connectionPort;
     IAuthenticator* const connectionAuthenticator;
-    QTcpSocket* connection;
+    ConfigHandler* config;
+    QTcpSocket socket;
     QMap<TID, IProc*> procs;
     QMap<TID, QVector<QObject*> > objects;
     QMap<QObject*, TID> objectsReverse;
     QMap<TID, IListModel*> lists;
     QSet<Group*> groups;
     QTimer timer;
-    bool connectionOk;
     qint32 inFrameLen;
     enum State { DISCONNECTED, CONNECTING, AUTHENTICATING, CONNECTED };
     State connectionState;
     QByteArray frameToSend;
     QByteArray identifier;
-    bool isDarkMode = false;
+
+    int batteryLevel[4];
+    int wifiStrength;
+
+    QProcess *process;
+    QTimer reconnect;
 
     void onAuthenticated();
     void onProtocolFrame(QDataStream& stream);
 
     void sendAuthRspFrame(QByteArray const& nonce);
-    void wakeScreen();
+public slots:
+    void getBattInfo(QByteArray battery, quint8 currentBat);
 private slots:
-    void onConnected();
-    void onDisconnected();
     void onReadyRead();
-    void onTimeElapsed();
-    void onSocketError(QAbstractSocket::SocketError socketError);
+    void connectionHandler();
+    void disconnectSocket(QString const& s);
 };
 
 class PHSCommunicationException : public QException {
