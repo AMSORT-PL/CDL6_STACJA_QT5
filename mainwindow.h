@@ -30,7 +30,7 @@ private:
     int actualLanguageint;
     bool flagConnectPHS;
     LayoutBase *buttonsWidget;
-    KeyboardNumDialog *keyboardNumDialog();
+    KeyboardNumDialog *keyboardNumDialog;
 
 signals:
     void openCont();

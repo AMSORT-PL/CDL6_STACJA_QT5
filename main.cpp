@@ -44,10 +44,6 @@ int main(int argc, char *argv[])
     QObject::connect(&mainWindow, SIGNAL(openReason()), &reason, SLOT(showwindow()));
     QObject::connect(&mainWindow, SIGNAL(showOnTopIfVisible()), &popup, SLOT(setOnTopIfVisible()));
 
-    QObject::connect(&phs, SIGNAL(connectionStatus(bool)), &startWindow, SLOT(phsConnectionStatusChanged(bool)));
-    QObject::connect(&phs, SIGNAL(connectionStatus(bool)), &reason, SLOT(phsConnectionStatusChanged(bool)));
-    QObject::connect(&phs, SIGNAL(connectionStatus(bool)), &popup, SLOT(phsConnectionStatusChanged(bool)));
-
     QApplication::setStyle(QStyleFactory::create("Fusion"));
 
     QApplication::setFont(FontManager::instance().getMontserratMedium());

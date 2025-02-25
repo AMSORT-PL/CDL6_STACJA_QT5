@@ -7,10 +7,12 @@
 #include "fontmanager.h"
 
 MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
-    QMainWindow(parent)
-  , phs(_phs)
-  , ui(new Ui::MainWindow)
-  , buttonsWidget(nullptr)
+    QMainWindow(parent),
+    phs(_phs),
+    ui(new Ui::MainWindow),
+    buttonsWidget(nullptr),
+    keyboardNumDialog(new KeyboardNumDialog(phs))
+
 {
     ui->setupUi(this);
 
@@ -41,7 +43,7 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
 }
 
 void MainWindow::on_ean_button_clicked() {
-
+    keyboardNumDialog->open();
 }
 
 MainWindow::~MainWindow()

@@ -131,12 +131,16 @@
            <font>
             <family>Segoe UI Semibold</family>
             <pointsize>18</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">padding-left: 10; padding-right: 10;border: 1px solid gray; border-radius: 2px;</string>
+           <string notr="true">padding-left: 10;
+padding-right: 10;
+border: 1px solid gray;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(250, 10, 10, 255), stop:1 rgba(196, 41, 41, 255));
+ border-radius: 2px;</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -166,7 +170,11 @@
            <cursorShape>ArrowCursor</cursorShape>
           </property>
           <property name="styleSheet">
-           <string notr="true">padding-left: 10; padding-right: 10;border: 1px solid gray; border-radius: 2px;</string>
+           <string notr="true">padding-left: 10;
+padding-right: 10;
+border: 1px solid gray;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 250, 10, 255), stop:1 rgba(181, 196, 41, 255));
+ border-radius: 2px;</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -192,6 +200,9 @@
           </property>
           <property name="layoutDirection">
            <enum>Qt::RightToLeft</enum>
+          </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
           </property>
           <property name="text">
            <string>NAZWA UZYTKOWNIKA  </string>
@@ -251,7 +262,7 @@
           <property name="font">
            <font>
             <family>Segoe UI Semilight</family>
-            <pointsize>15</pointsize>
+            <pointsize>18</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
@@ -385,7 +396,7 @@
          <number>6</number>
         </property>
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="process_message">
           <property name="font">
            <font>
             <family>Segoe UI Semilight</family>
@@ -401,7 +412,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_8">
+         <widget class="QLabel" name="extra_message">
           <property name="font">
            <font>
             <family>Segoe UI Semibold</family>
