@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/new/prefix1"/>
+    <qresource prefix="/">
+        <file>Montserrat-Bold.ttf</file>
+        <file>Montserrat-Medium.ttf</file>
+    </qresource>
+</RCC>
