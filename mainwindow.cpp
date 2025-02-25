@@ -20,7 +20,9 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
 
     QVBoxLayout *layout = new QVBoxLayout(ui->buttonFrame);
     layout->addWidget(buttonsWidget);
+    layout->setMargin(6);
     ui->buttonFrame->setLayout(layout);
+
 
     flagConnectPHS = true;
     QTimer *updateStatusConnectionToPHS = new QTimer(this);

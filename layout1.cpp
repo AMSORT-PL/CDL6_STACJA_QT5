@@ -9,6 +9,10 @@ Layout1::Layout1(PHSBackend* _phs, QWidget *parent) :
 
     name = settings.value("PHS/name", "P00").toString();
 
+    //QWidget#Layout1 { border: 1px solid gray;}
+
+    this->setStyleSheet("border: 1px solid gray;");
+
     ui->setupUi(this);
 
     assignButtons();

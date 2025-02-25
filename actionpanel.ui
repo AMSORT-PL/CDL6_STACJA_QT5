@@ -45,11 +45,12 @@
        <property name="font">
         <font>
          <family>Segoe UI Semibold</family>
-         <pointsize>12</pointsize>
+         <pointsize>16</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Zamykanie pojemnika</string>
+        <string>Zamykanie
+pojemnika</string>
        </property>
        <property name="checkable">
         <bool>false</bool>
@@ -70,7 +71,7 @@
        <property name="font">
         <font>
          <family>Segoe UI Semibold</family>
-         <pointsize>16</pointsize>
+         <pointsize>20</pointsize>
         </font>
        </property>
        <property name="text">
@@ -89,11 +90,12 @@
        <property name="font">
         <font>
          <family>Segoe UI Semibold</family>
-         <pointsize>12</pointsize>
+         <pointsize>16</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Inwentaryzuj pojemnik</string>
+        <string>Inwentaryzuj
+pojemnik</string>
        </property>
       </widget>
      </item>
@@ -108,11 +110,12 @@
        <property name="font">
         <font>
          <family>Segoe UI Semibold</family>
-         <pointsize>12</pointsize>
+         <pointsize>16</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Oznacz pojemnik do KJ</string>
+        <string>Oznacz pojemnik
+do KJ</string>
        </property>
       </widget>
      </item>
@@ -127,11 +130,12 @@
        <property name="font">
         <font>
          <family>Segoe UI Semibold</family>
-         <pointsize>12</pointsize>
+         <pointsize>16</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Uruchom przenośnik odbiorczy</string>
+        <string>Uruchom przenośnik
+odbiorczy</string>
        </property>
       </widget>
      </item>
@@ -212,11 +216,12 @@
        <property name="font">
         <font>
          <family>Segoe UI Semibold</family>
-         <pointsize>12</pointsize>
+         <pointsize>16</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Inwentaryzuj pojemnik źródłowy</string>
+        <string>Inwentaryzuj pojemnik
+źródłowy</string>
        </property>
       </widget>
      </item>
@@ -231,11 +236,12 @@
        <property name="font">
         <font>
          <family>Segoe UI Semibold</family>
-         <pointsize>12</pointsize>
+         <pointsize>16</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Inwentaryzuj produkt</string>
+        <string>Inwentaryzuj
+produkt</string>
        </property>
       </widget>
      </item>
@@ -250,11 +256,12 @@
        <property name="font">
         <font>
          <family>Segoe UI Semibold</family>
-         <pointsize>12</pointsize>
+         <pointsize>16</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Edytuj ostatni wrzut</string>
+        <string>Edytuj ostatni
+wrzut</string>
        </property>
       </widget>
      </item>
@@ -269,7 +276,7 @@
        <property name="font">
         <font>
          <family>Segoe UI Semibold</family>
-         <pointsize>12</pointsize>
+         <pointsize>16</pointsize>
         </font>
        </property>
        <property name="text">

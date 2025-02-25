@@ -4,5 +4,6 @@
         <file>Montserrat-Bold.ttf</file>
         <file>Montserrat-Medium.ttf</file>
         <file>standing_direction.png</file>
+        <file>exit.png</file>
     </qresource>
 </RCC>

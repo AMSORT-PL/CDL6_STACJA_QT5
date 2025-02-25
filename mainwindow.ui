@@ -190,8 +190,15 @@
             <pointsize>16</pointsize>
            </font>
           </property>
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
+          </property>
           <property name="text">
-           <string>NAZWA UZYTKOWNIKA</string>
+           <string>NAZWA UZYTKOWNIKA  </string>
+          </property>
+          <property name="icon">
+           <iconset resource="zasoby.qrc">
+            <normaloff>:/exit.png</normaloff>:/exit.png</iconset>
           </property>
          </widget>
         </item>
@@ -421,6 +428,9 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
         </property>
@@ -451,6 +461,8 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="zasoby.qrc"/>
+ </resources>
  <connections/>
 </ui>
