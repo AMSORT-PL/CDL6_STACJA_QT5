@@ -17,8 +17,6 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
 
      buttonsWidget = new Layout1(phs, this);
 
-
-
     QVBoxLayout *layout = new QVBoxLayout(ui->buttonFrame);
     layout->addWidget(buttonsWidget);
     ui->buttonFrame->setLayout(layout);

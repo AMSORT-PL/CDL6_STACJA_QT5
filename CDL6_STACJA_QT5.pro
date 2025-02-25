@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    actionpanel.cpp \
     confighandler.cpp \
     fontmanager.cpp \
     layout1.cpp \
@@ -38,6 +39,7 @@ SOURCES += \
     popup.cpp
 
 HEADERS += \
+    actionpanel.h \
     confighandler.h \
     constants.h \
     fontmanager.h \
@@ -51,6 +53,7 @@ HEADERS += \
     popup.h
 
 FORMS += \
+    actionpanel.ui \
     layout1.ui \
     mainwindow.ui \
     startwindow.ui \

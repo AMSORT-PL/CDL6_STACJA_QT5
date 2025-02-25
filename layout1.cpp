@@ -13,6 +13,13 @@ Layout1::Layout1(PHSBackend* _phs, QWidget *parent) :
 
     assignButtons();
     connectButtons();
+
+   actionPanel = new ActionPanel(this);
+
+   QVBoxLayout *layout = new QVBoxLayout(ui->action_frame);
+   layout->addWidget(actionPanel);
+   ui->action_frame->setLayout(layout);
+
 }
 
 QList<QPushButton*> Layout1::getButtons() const {

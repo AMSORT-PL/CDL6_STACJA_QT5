@@ -3,5 +3,6 @@
     <qresource prefix="/">
         <file>Montserrat-Bold.ttf</file>
         <file>Montserrat-Medium.ttf</file>
+        <file>standing_direction.png</file>
     </qresource>
 </RCC>

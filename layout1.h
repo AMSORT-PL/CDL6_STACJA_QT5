@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QSettings>
 #include <QApplication>
+#include "actionpanel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -32,6 +33,7 @@ private:
     void assignButtons();
     void connectButtons();
     QString name;
+    ActionPanel *actionPanel;
 
 private slots:
     void buttonClicked();
