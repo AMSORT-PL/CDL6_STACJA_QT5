@@ -202,10 +202,10 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgb
            <enum>Qt::RightToLeft</enum>
           </property>
           <property name="autoFillBackground">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="text">
-           <string>NAZWA UZYTKOWNIKA  </string>
+           <string>NAZWA UŻYTKOWNIKA</string>
           </property>
           <property name="icon">
            <iconset resource="zasoby.qrc">

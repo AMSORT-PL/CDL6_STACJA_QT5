@@ -384,6 +384,37 @@ void PHSBackend::onProtocolFrame(QDataStream& stream) {
             std::cerr << "OPCODE CALL(" << id << ")" << std::endl;
             readQVariantVector(stream, opParam, params);
             auto proc = procs.find(id);
+
+            switch(id) {
+            case 10: // mark location
+
+                break;
+
+            case 11: // unmark location
+
+                break;
+
+            case 12: // set user name
+
+                break;
+
+            case 13: // set andon state
+
+                break;
+
+            case 14: // assign carrier to location
+
+                break;
+
+            case 15: // set cerriet on way
+
+                break;
+
+            case 16: // set source carrier
+
+                break;
+            }
+
             if (proc != procs.end())
                 (*proc)->call(params);
         }

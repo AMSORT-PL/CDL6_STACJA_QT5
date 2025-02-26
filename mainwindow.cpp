@@ -5,6 +5,7 @@
 #include "QTime"
 #include "constants.h"
 #include "fontmanager.h"
+#include <QScreen>
 
 MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
     QMainWindow(parent),
@@ -25,6 +26,11 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
     layout->setMargin(6);
     ui->buttonFrame->setLayout(layout);
 
+    keyboardNumDialog->setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog
+                               | Qt::X11BypassWindowManagerHint | Qt::WindowStaysOnTopHint);
+
+    keyboardNumDialog->setAttribute(Qt::WA_TranslucentBackground);
+
 
     flagConnectPHS = true;
     QTimer *updateStatusConnectionToPHS = new QTimer(this);
@@ -44,6 +50,18 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
 
 void MainWindow::on_ean_button_clicked() {
     keyboardNumDialog->open();
+
+    QRect screenGeometry = QGuiApplication::primaryScreen()->geometry();
+
+    // Pobranie rozmiaru okna dialogowego
+    QSize dialogSize = keyboardNumDialog->size();
+
+    // Obliczenie pozycji środkowej
+    int x = screenGeometry.x() + (screenGeometry.width() - dialogSize.width()) / 2;
+    int y = screenGeometry.y() + (screenGeometry.height() - dialogSize.height()) / 2;
+
+    // Ustawienie pozycji
+    keyboardNumDialog->move(x, y);
 }
 
 MainWindow::~MainWindow()

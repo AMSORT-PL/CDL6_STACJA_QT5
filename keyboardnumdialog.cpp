@@ -10,13 +10,6 @@ KeyboardNumDialog::KeyboardNumDialog(PHSBackend *_phsBackend, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QFont font;
-    font.setFamily("MS Shell Dlg 2");
-    font.setPointSize(12);
-    font.setBold(true);
-    font.setLetterSpacing(QFont::AbsoluteSpacing, 5);
-    ui->eanLineEdit->setFont(font);
-
     int l = 0;
     int r = 0;
     int t = 0;

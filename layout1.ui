@@ -121,7 +121,7 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: #a393fa;</string>
+        <string notr="true">background-color: #b0a2fa;</string>
        </property>
        <property name="text">
         <string/>
