@@ -77,6 +77,10 @@ void Layout1::buttonClicked()
     }
 }
 
+void Layout1::markLocation(int locationId) {
+    qInfo() << "Layout1: Marking location:" << locationId;
+}
+
 Layout1::~Layout1() {
     delete ui;
 }

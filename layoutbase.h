@@ -15,6 +15,9 @@ public:
 
 signals:
     void ean_button_clicked_forward();
+
+public slots:
+    virtual void markLocation(int locationId) = 0;
 };
 
 #endif // LAYOUTBASE_H

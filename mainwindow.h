@@ -6,7 +6,13 @@
 #include "layout1.h"
 #include <QPushButton>
 #include <QSettings>
+#include <QScreen>
 #include "keyboardnumdialog.h"
+#include "QProcess"
+#include "QDate"
+#include "QTime"
+#include "constants.h"
+#include "fontmanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

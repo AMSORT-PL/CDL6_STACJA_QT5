@@ -38,6 +38,9 @@ private:
 private slots:
     void buttonClicked();
     void ean_button_clicked();
+
+public slots:
+    void markLocation(int locationId) override;
 };
 
 #endif // LAYOUT1_H

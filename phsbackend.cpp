@@ -387,31 +387,31 @@ void PHSBackend::onProtocolFrame(QDataStream& stream) {
 
             switch(id) {
             case 10: // mark location
-
+                emit markLocation(params[0].toInt());
                 break;
 
             case 11: // unmark location
-
+                emit unmarkLocation();
                 break;
 
             case 12: // set user name
-
+                emit setUsername(params[0].toString());
                 break;
 
             case 13: // set andon state
-
+                emit sentAndonState(params[0].toBool(), params[1].toBool());
                 break;
 
             case 14: // assign carrier to location
-
+                emit assignCarrierToLocation(params[0].toString(), params[1].toInt());
                 break;
 
-            case 15: // set cerriet on way
-
+            case 15: // set carrier on way
+                emit setCarriersOnWay(params[0].toInt());
                 break;
 
             case 16: // set source carrier
-
+                emit setSourceCarrier(params[0].toString());
                 break;
             }
 

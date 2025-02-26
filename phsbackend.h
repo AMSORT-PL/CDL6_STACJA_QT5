@@ -64,6 +64,14 @@ signals:
     void noConnection();
     void connected();
 
+    void markLocation(int locationId);
+    void unmarkLocation();
+    void setUsername(QString name);
+    void sentAndonState(bool yellow, bool red);
+    void assignCarrierToLocation(QString carrierName, int locationId);
+    void setCarriersOnWay(int quantity);
+    void setSourceCarrier(QString name);
+
 public:
 
     PHSBackend(QHostAddress const& host, quint16 port, IAuthenticator* authenticator, QByteArray const& identifier, QObject *parent = 0);

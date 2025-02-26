@@ -5,5 +5,6 @@
         <file>Montserrat-Medium.ttf</file>
         <file>standing_direction.png</file>
         <file>exit.png</file>
+        <file>worker.svg</file>
     </qresource>
 </RCC>

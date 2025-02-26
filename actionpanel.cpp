@@ -1,12 +1,19 @@
 #include "actionpanel.h"
 #include "ui_actionpanel.h"
 #include <QDebug>
+#include <QSvgWidget>
 
 ActionPanel::ActionPanel(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ActionPanel)
 {
     ui->setupUi(this);
+
+    QSvgWidget *svg = new QSvgWidget(this);
+    svg->load(QString(":/worker.svg"));
+    svg->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    ui->gridLayout_2->addWidget(svg);
+
 }
 
 ActionPanel::~ActionPanel()

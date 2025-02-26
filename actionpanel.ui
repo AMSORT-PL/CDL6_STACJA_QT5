@@ -187,21 +187,7 @@ odbiorczy</string>
     </layout>
    </item>
    <item>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap resource="zasoby.qrc">:/standing_direction.png</pixmap>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <layout class="QGridLayout" name="gridLayout_2"/>
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_3">
@@ -294,8 +280,6 @@ produkt</string>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="zasoby.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -1,11 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "QProcess"
-#include "QDate"
-#include "QTime"
-#include "constants.h"
-#include "fontmanager.h"
-#include <QScreen>
 
 MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
     QMainWindow(parent),
@@ -46,6 +40,7 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
     t->start();
 
     connect(buttonsWidget, &LayoutBase::ean_button_clicked_forward, this, &MainWindow::on_ean_button_clicked);
+    //connect(phs, &PHSBackend::markLocation, buttonsWidget, &LayoutBase::markLocation);
 }
 
 void MainWindow::on_ean_button_clicked() {
