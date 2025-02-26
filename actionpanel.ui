@@ -216,7 +216,7 @@ odbiorczy</string>
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>70</height>
+         <height>90</height>
         </size>
        </property>
        <property name="font">
@@ -236,7 +236,7 @@ odbiorczy</string>
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>70</height>
+         <height>90</height>
         </size>
        </property>
        <property name="font">
@@ -256,7 +256,7 @@ wrzut</string>
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>70</height>
+         <height>90</height>
         </size>
        </property>
        <property name="font">
@@ -276,7 +276,7 @@ produkt</string>
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>70</height>
+         <height>90</height>
         </size>
        </property>
        <property name="font">

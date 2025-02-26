@@ -53,14 +53,11 @@ void MainWindow::on_ean_button_clicked() {
 
     QRect screenGeometry = QGuiApplication::primaryScreen()->geometry();
 
-    // Pobranie rozmiaru okna dialogowego
     QSize dialogSize = keyboardNumDialog->size();
 
-    // Obliczenie pozycji środkowej
     int x = screenGeometry.x() + (screenGeometry.width() - dialogSize.width()) / 2;
-    int y = screenGeometry.y() + (screenGeometry.height() - dialogSize.height()) / 2;
+    int y = screenGeometry.y() + 50 + (screenGeometry.height() - dialogSize.height()) / 2;
 
-    // Ustawienie pozycji
     keyboardNumDialog->move(x, y);
 }
 
