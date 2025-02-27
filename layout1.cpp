@@ -66,15 +66,7 @@ void Layout1::buttonClicked()
     QPushButton *button = (QPushButton *)sender();
     int buttonId = button->property("id").toInt();
 
-    if (buttonId <= 15) {
-        qInfo() << QString("Location %1-01-%2").arg(name).arg(buttonId);
-    }
-    else if (buttonId <= 30) {
-        qInfo() << QString("Location %1-02-%2").arg(name).arg(buttonId);
-    }
-    else if (buttonId <= 45) {
-        qInfo() << QString("Location %1-03-%2").arg(name).arg(buttonId);
-    }
+    markLocation(buttonId);
 }
 
 void Layout1::markLocation(int locationId) {

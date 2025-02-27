@@ -30,6 +30,9 @@
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
       <widget class="QPushButton" name="pushButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -58,10 +61,25 @@ pojemnika</string>
        <property name="checked">
         <bool>false</bool>
        </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
      <item row="3" column="0" colspan="2">
       <widget class="QPushButton" name="pushButton_5">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -81,6 +99,9 @@ pojemnika</string>
      </item>
      <item row="2" column="1">
       <widget class="QPushButton" name="pushButton_4">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -101,6 +122,9 @@ pojemnik</string>
      </item>
      <item row="2" column="0">
       <widget class="QPushButton" name="pushButton_3">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -121,6 +145,9 @@ do KJ</string>
      </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="pushButton_2">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -206,6 +233,9 @@ odbiorczy</string>
      </property>
      <item row="0" column="1">
       <widget class="QPushButton" name="pushButton_7">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -226,6 +256,9 @@ odbiorczy</string>
      </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="pushButton_8">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -281,12 +314,24 @@ produkt</string>
        <property name="text">
         <string>Wpisz EAN</string>
        </property>
+       <property name="icon">
+        <iconset resource="zasoby.qrc">
+         <normaloff>:/numeric.svg</normaloff>:/numeric.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
       </widget>
      </item>
     </layout>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="zasoby.qrc"/>
+ </resources>
  <connections/>
 </ui>

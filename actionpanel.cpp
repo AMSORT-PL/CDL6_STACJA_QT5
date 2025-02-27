@@ -14,7 +14,6 @@ ActionPanel::ActionPanel(QWidget *parent) :
     svg->setStyleSheet("background-color: transparent");
     svg->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     ui->gridLayout_2->addWidget(svg);
-
 }
 
 ActionPanel::~ActionPanel()
@@ -26,4 +25,3 @@ void ActionPanel::on_ean_button_clicked()
 {
     emit ean_button_clicked();
 }
-

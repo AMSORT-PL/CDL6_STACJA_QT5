@@ -136,6 +136,7 @@ private:
 public slots:
     void getBattInfo(QByteArray battery, quint8 currentBat);
     void sendEan(QString code);
+    void markLocationRequest(int locationId);
 private slots:
     void onReadyRead();
     void connectionHandler();
