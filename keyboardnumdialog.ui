@@ -158,6 +158,16 @@ QPushButton:disabled {
        </layout>
       </item>
       <item>
+       <widget class="QLabel" name="error_label">
+        <property name="styleSheet">
+         <string notr="true">color: red;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
        <layout class="QHBoxLayout" name="eanHorizontalLayout">
         <property name="spacing">
          <number>3</number>

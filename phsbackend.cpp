@@ -174,6 +174,10 @@ void PHSBackend::connectionHandler() {
     }
 }
 
+void PHSBackend::sendEan(QString code) {
+    qInfo() << "EAN" << code <<"sent";
+}
+
 void PHSBackend::getBattInfo(QByteArray battery, quint8 currentBat) {
     for (int i = 0; i < 4; i++)
     {

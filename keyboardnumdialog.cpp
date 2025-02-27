@@ -6,7 +6,8 @@
 KeyboardNumDialog::KeyboardNumDialog(PHSBackend *_phsBackend, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::KeyboardNumDialog),
-    phsBackend(_phsBackend)
+    phsBackend(_phsBackend),
+    errorTimer(new QTimer())
 {
     ui->setupUi(this);
 
@@ -18,6 +19,9 @@ KeyboardNumDialog::KeyboardNumDialog(PHSBackend *_phsBackend, QWidget *parent) :
     ui->eanLineEdit->getTextMargins(&l, &t, &r, &b);
 
     ui->eanLineEdit->setTextMargins(l + 5, t, r, b);
+
+    errorTimer->setInterval(2000);
+    connect(errorTimer, SIGNAL(timeout()), this, SLOT(clearErrorMessage()));
 }
 
 KeyboardNumDialog::~KeyboardNumDialog()
@@ -44,8 +48,10 @@ void KeyboardNumDialog::on_confirmPushButton_clicked()
     QString text = QString::fromStdString("]E0");
     text.append(ui->eanLineEdit->text());
 
-    if(text.size() < 1)
-        return;
+    if(ui->eanLineEdit->text() < 1) {
+        setErrorMessage("Nie można przesłać pustego pola");
+        return;   
+    }
 
     displayEnd();
 
@@ -67,6 +73,15 @@ void KeyboardNumDialog::on_bckspcPushButton_clicked()
     text.resize(text.size() - 1);
 
     ui->eanLineEdit->setText(text);
+}
+
+void KeyboardNumDialog::setErrorMessage(QString message) {
+    ui->error_label->setText(message);
+    errorTimer->start();
+}
+
+void KeyboardNumDialog::clearErrorMessage() {
+    ui->error_label->setText("");
 }
 
 void KeyboardNumDialog::on_d0PushButton_clicked()

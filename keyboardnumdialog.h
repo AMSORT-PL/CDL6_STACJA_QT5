@@ -51,10 +51,14 @@ private slots:
 
     void on_d9PushButton_clicked();
 
+    void clearErrorMessage();
+
 private:
     Ui::KeyboardNumDialog *ui;
     PHSBackend *phsBackend;
     void appendChar(QChar digit);
+    void setErrorMessage(QString message);
+    QTimer *errorTimer;
 };
 
 #endif // KEYBOARDNUMDIALOG_H

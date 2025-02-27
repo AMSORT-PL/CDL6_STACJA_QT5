@@ -25,22 +25,9 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
 
     keyboardNumDialog->setAttribute(Qt::WA_TranslucentBackground);
 
-
-    flagConnectPHS = true;
-    QTimer *updateStatusConnectionToPHS = new QTimer(this);
-    connect(updateStatusConnectionToPHS, SIGNAL(timeout()), this, SLOT(checkConnectionWithPHS()));
-    updateStatusConnectionToPHS->start(500);
-
-    QTimer *t = new QTimer(this);
-    t->setInterval(1000);
-    connect(t, &QTimer::timeout, [&]() {
-    emit showOnTopIfVisible();
-
-    } );
-    t->start();
-
     connect(buttonsWidget, &LayoutBase::ean_button_clicked_forward, this, &MainWindow::on_ean_button_clicked);
     connect(phs, &PHSBackend::markLocation, buttonsWidget, &LayoutBase::markLocation);
+    connect(keyboardNumDialog, &KeyboardNumDialog::gotEanToSend, phs, &PHSBackend::sendEan);
 }
 
 void MainWindow::on_ean_button_clicked() {

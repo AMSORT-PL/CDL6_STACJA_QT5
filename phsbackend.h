@@ -135,6 +135,7 @@ private:
     void sendAuthRspFrame(QByteArray const& nonce);
 public slots:
     void getBattInfo(QByteArray battery, quint8 currentBat);
+    void sendEan(QString code);
 private slots:
     void onReadyRead();
     void connectionHandler();
