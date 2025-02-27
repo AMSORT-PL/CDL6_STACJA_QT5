@@ -7,5 +7,9 @@
         <file>exit.png</file>
         <file>chef-man-cap-svgrepo-com.svg</file>
         <file>worker.svg</file>
+        <file>backspace.svg</file>
+        <file>cross.svg</file>
+        <file>enter.svg</file>
+        <file>numeric.svg</file>
     </qresource>
 </RCC>

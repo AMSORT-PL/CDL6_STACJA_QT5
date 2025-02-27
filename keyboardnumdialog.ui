@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>350</width>
+    <width>400</width>
     <height>275</height>
    </rect>
   </property>
@@ -91,6 +91,12 @@ border-radius: 5px;
         </item>
         <item>
          <widget class="QPushButton" name="cancelPushButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="font">
            <font>
             <pointsize>-1</pointsize>
@@ -107,7 +113,7 @@ border-radius: 5px;
     border: 1px solid #d0d0d0;
     border-radius: 10px;
     color: #333333;
-    padding: 5px 20px;
+    padding: 5px;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
@@ -125,7 +131,7 @@ QPushButton:pressed {
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #e8e8e8, stop: 1 #d0d0d0);
     border: 1px solid #b0b0b0;
-    padding: 8px 18px;
+    padding: 5px;
 }
 
 QPushButton:disabled {
@@ -135,7 +141,17 @@ QPushButton:disabled {
 }</string>
           </property>
           <property name="text">
-           <string>X</string>
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="zasoby.qrc">
+            <normaloff>:/cross.svg</normaloff>:/cross.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -174,7 +190,7 @@ QPushButton:disabled {
            <string notr="true">background-color: rgb(255, 255, 255);border-radius:5px;</string>
           </property>
           <property name="text">
-           <string>435 764 563 745 4</string>
+           <string/>
           </property>
           <property name="readOnly">
            <bool>true</bool>
@@ -233,7 +249,11 @@ QPushButton:disabled {
 }</string>
           </property>
           <property name="text">
-           <string>←</string>
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="zasoby.qrc">
+            <normaloff>:/backspace.svg</normaloff>:/backspace.svg</iconset>
           </property>
          </widget>
         </item>
@@ -787,7 +807,11 @@ QPushButton:disabled {
 }</string>
           </property>
           <property name="text">
-           <string>ENTER</string>
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="zasoby.qrc">
+            <normaloff>:/enter.svg</normaloff>:/enter.svg</iconset>
           </property>
          </widget>
         </item>
@@ -798,6 +822,8 @@ QPushButton:disabled {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="zasoby.qrc"/>
+ </resources>
  <connections/>
 </ui>

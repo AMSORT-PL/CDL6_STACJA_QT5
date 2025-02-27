@@ -37,7 +37,9 @@ SOURCES += \
     startwindow.cpp \
     dialreasonreduct.cpp \
     popup.cpp \
-    keyboardnumdialog.cpp
+    keyboardnumdialog.cpp \
+    tabinfo.cpp \
+    tablewindow.cpp
 
 HEADERS += \
     actionpanel.h \
@@ -52,7 +54,9 @@ HEADERS += \
     startwindow.h \
     dialreasonreduct.h \
     popup.h \
-    keyboardnumdialog.h
+    keyboardnumdialog.h \
+    tabinfo.h \
+    tablewindow.h
 
 FORMS += \
     actionpanel.ui \
@@ -61,7 +65,8 @@ FORMS += \
     startwindow.ui \
     dialreasonreduct.ui \
     popup.ui \
-    keyboardnumdialog.ui
+    keyboardnumdialog.ui \
+    tablewindow.ui
 
 RESOURCES += \
     zasoby.qrc

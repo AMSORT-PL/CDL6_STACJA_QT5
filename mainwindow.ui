@@ -67,7 +67,7 @@
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>40</height>
+            <height>60</height>
            </size>
           </property>
           <property name="font">
@@ -138,9 +138,10 @@
           <property name="styleSheet">
            <string notr="true">padding-left: 10;
 padding-right: 10;
-border: 1px solid gray;
+border: 1px solid #960202;
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(250, 10, 10, 255), stop:1 rgba(196, 41, 41, 255));
- border-radius: 2px;</string>
+ border-radius: 2px;
+color: white;</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -172,9 +173,10 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgb
           <property name="styleSheet">
            <string notr="true">padding-left: 10;
 padding-right: 10;
-border: 1px solid gray;
+border: 1px solid #a0a800;
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 250, 10, 255), stop:1 rgba(181, 196, 41, 255));
- border-radius: 2px;</string>
+ border-radius: 2px;
+color: white;</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -187,7 +189,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgb
         <item>
          <widget class="QPushButton" name="user_name">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -268,7 +270,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgb
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">color: gray;</string>
+           <string notr="true">color: #70706f;</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
