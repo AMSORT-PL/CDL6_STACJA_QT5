@@ -40,7 +40,7 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
     t->start();
 
     connect(buttonsWidget, &LayoutBase::ean_button_clicked_forward, this, &MainWindow::on_ean_button_clicked);
-    //connect(phs, &PHSBackend::markLocation, buttonsWidget, &LayoutBase::markLocation);
+    connect(phs, &PHSBackend::markLocation, buttonsWidget, &LayoutBase::markLocation);
 }
 
 void MainWindow::on_ean_button_clicked() {

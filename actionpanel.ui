@@ -187,7 +187,14 @@ odbiorczy</string>
     </layout>
    </item>
    <item>
-    <layout class="QGridLayout" name="gridLayout_2"/>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <property name="leftMargin">
+      <number>80</number>
+     </property>
+     <property name="rightMargin">
+      <number>80</number>
+     </property>
+    </layout>
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_3">

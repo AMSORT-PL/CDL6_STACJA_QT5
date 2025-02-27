@@ -11,6 +11,7 @@ ActionPanel::ActionPanel(QWidget *parent) :
 
     QSvgWidget *svg = new QSvgWidget(this);
     svg->load(QString(":/worker.svg"));
+    svg->setStyleSheet("background-color: transparent");
     svg->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     ui->gridLayout_2->addWidget(svg);
 
