@@ -26,6 +26,9 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
     keyboardNumDialog->setAttribute(Qt::WA_TranslucentBackground);
 
     connect(buttonsWidget, &LayoutBase::ean_button_clicked_forward, this, &MainWindow::on_ean_button_clicked);
+    connect(buttonsWidget, &LayoutBase::askToMarkLocation, phs, &PHSBackend::markLocationRequest);
+
+
     connect(phs, &PHSBackend::markLocation, buttonsWidget, &LayoutBase::markLocation);
     connect(keyboardNumDialog, &KeyboardNumDialog::gotEanToSend, phs, &PHSBackend::sendEan);
 }

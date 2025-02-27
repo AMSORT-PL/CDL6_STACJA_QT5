@@ -29,7 +29,7 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="close_carrier">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -76,7 +76,7 @@ pojemnika</string>
       </widget>
      </item>
      <item row="3" column="0" colspan="2">
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="reprint">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -98,7 +98,7 @@ pojemnika</string>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="inventory_tote">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -121,7 +121,7 @@ pojemnik</string>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="mark_KJ">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -144,7 +144,7 @@ do KJ</string>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="run_receiving_container">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -232,7 +232,7 @@ odbiorczy</string>
       <number>20</number>
      </property>
      <item row="0" column="1">
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="inventory_src_container">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -255,7 +255,7 @@ odbiorczy</string>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="pushButton_8">
+      <widget class="QPushButton" name="edit_last">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -278,7 +278,7 @@ wrzut</string>
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="inventory_product">
        <property name="minimumSize">
         <size>
          <width>0</width>

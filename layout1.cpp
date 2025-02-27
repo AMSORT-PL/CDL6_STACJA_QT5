@@ -66,7 +66,7 @@ void Layout1::buttonClicked()
     QPushButton *button = (QPushButton *)sender();
     int buttonId = button->property("id").toInt();
 
-    markLocation(buttonId);
+    emit askToMarkLocation(buttonId);
 }
 
 void Layout1::markLocation(int locationId) {

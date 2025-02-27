@@ -15,6 +15,7 @@ public:
 
 signals:
     void ean_button_clicked_forward();
+    void askToMarkLocation(int locationId);
 
 public slots:
     virtual void markLocation(int locationId) = 0;

@@ -176,6 +176,12 @@ void PHSBackend::connectionHandler() {
 
 void PHSBackend::sendEan(QString code) {
     qInfo() << "EAN" << code <<"sent";
+     callPhsProc(108, QVector<QVariant>{code});
+}
+
+void PHSBackend::markLocationRequest(int locationId) {
+    qInfo() << "Request to mark location" << locationId;
+    callPhsProc(101, QVector<QVariant>{locationId});
 }
 
 void PHSBackend::getBattInfo(QByteArray battery, quint8 currentBat) {
