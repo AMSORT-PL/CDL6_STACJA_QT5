@@ -43,6 +43,10 @@ signals:
     void openReason();
     void showOnTopIfVisible();
 
+public slots:
+    void onConnected();
+    void onDisconnected();
+
 private slots:
     void on_ean_button_clicked();
 };

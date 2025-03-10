@@ -9,6 +9,8 @@
 #include <QSettings>
 #include <QApplication>
 #include "actionpanel.h"
+#include <algorithm>
+#include "constants.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,13 +36,23 @@ private:
     void connectButtons();
     QString name;
     ActionPanel *actionPanel;
+    QPushButton* getButton(int locationId);
+    QPushButton* markedButton;
 
 private slots:
     void buttonClicked();
     void ean_button_clicked();
+    void inventory_tote_clicked();
+    void inventory_product_clicked();
+    void mark_KJ_clicked();
+    void close_carrier_clicked();
+    void reprint_clicked();
+    void run_receiving_container_clicked();
+    void inventory_src_container_clicked();
 
 public slots:
     void markLocation(int locationId) override;
+    void unmarkLocation() override;
 };
 
 #endif // LAYOUT1_H

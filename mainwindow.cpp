@@ -11,7 +11,6 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
 {
     ui->setupUi(this);
 
-
     buttonsWidget = new Layout1(phs, this);
 
 
@@ -25,8 +24,29 @@ MainWindow::MainWindow(PHSBackend* _phs, QWidget *parent) :
 
     keyboardNumDialog->setAttribute(Qt::WA_TranslucentBackground);
 
+    connect(phs, &PHSBackend::noConnection, this, &MainWindow::onDisconnected);
+    connect(phs, &PHSBackend::connected, this, &MainWindow::onConnected);
+
+
     connect(buttonsWidget, &LayoutBase::ean_button_clicked_forward, this, &MainWindow::on_ean_button_clicked);
     connect(buttonsWidget, &LayoutBase::askToMarkLocation, phs, &PHSBackend::markLocationRequest);
+    connect(buttonsWidget, &LayoutBase::inventory_tote_clicked_forward, phs, &PHSBackend::inventoryToteRequest);
+    connect(buttonsWidget, &LayoutBase::inventory_product_clicked_forward, phs, &PHSBackend::inventoryProductRequest);
+    connect(buttonsWidget, &LayoutBase::mark_KJ_clicked_forward, phs, &PHSBackend::markKJRequest);
+    connect(buttonsWidget, &LayoutBase::close_carrier_clicked_forward, phs, &PHSBackend::closeCarrierRequest);
+    connect(buttonsWidget, &LayoutBase::reprint_clicked_forward, phs, &PHSBackend::reprintRequest);
+    connect(buttonsWidget, &LayoutBase::run_receiving_container_clicked_forward, phs, &PHSBackend::runReceivingContainerRequest);
+    connect(buttonsWidget, &LayoutBase::inventory_src_container_clicked_forward, phs, &PHSBackend::inventorySrcContainerRequest);
+
+    /*
+    void inventory_button_clicked_forward();
+    void inventory_product_clicked_forward();
+    void mark_KJ_clicked_forward();
+    void close_carrier_clicked_forward();
+    void reprint_clicked_forward();
+    void run_receiving_container_clicked_forward();
+    void inventory_src_container_clicked_forward();
+     */
 
 
     connect(phs, &PHSBackend::markLocation, buttonsWidget, &LayoutBase::markLocation);
@@ -44,6 +64,14 @@ void MainWindow::on_ean_button_clicked() {
     int y = screenGeometry.y() + 50 + (screenGeometry.height() - dialogSize.height()) / 2;
 
     keyboardNumDialog->move(x, y);
+}
+
+void MainWindow::onConnected() {
+    ui->conn_label->setText("Połączono");
+}
+
+void MainWindow::onDisconnected() {
+    ui->conn_label->setText("Brak połączenia");
 }
 
 MainWindow::~MainWindow()

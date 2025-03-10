@@ -76,8 +76,6 @@ public:
 
     PHSBackend(QHostAddress const& host, quint16 port, IAuthenticator* authenticator, QByteArray const& identifier, QObject *parent = 0);
 
-    PHSBackend(QHostAddress const& host, quint16 port, IAuthenticator* authenticator, QObject *parent = 0);
-
     Group* enterObjectsGroup(); // NOTE: PhsBackand is not the owner of the group, you have to do delete group;
     void leaveObjectsGroup(Group* group); // NOTE: Idempotent. You may also do delete group;
 
@@ -137,6 +135,23 @@ public slots:
     void getBattInfo(QByteArray battery, quint8 currentBat);
     void sendEan(QString code);
     void markLocationRequest(int locationId);
+    void inventoryToteRequest();
+    void inventoryProductRequest();
+    void markKJRequest();
+    void closeCarrierRequest();
+    void reprintRequest();
+    void runReceivingContainerRequest();
+    void inventorySrcContainerRequest();
+    /*
+     *
+     *     connect(buttonsWidget, &LayoutBase::inventory_tote_clicked_forward, phs, &PHSBackend::inventoryToteRequest);
+    connect(buttonsWidget, &LayoutBase::inventory_product_clicked_forward, phs, &PHSBackend::inventoryProductRequest);
+    connect(buttonsWidget, &LayoutBase::mark_KJ_clicked_forward, phs, &PHSBackend::markKJRequest);
+    connect(buttonsWidget, &LayoutBase::close_carrier_clicked_forward, phs, &PHSBackend::closeCarrierRequest);
+    connect(buttonsWidget, &LayoutBase::reprint_clicked_forward, phs, &PHSBackend::ReprintRequest);
+    connect(buttonsWidget, &LayoutBase::run_receiving_container_clicked_forward, phs, &PHSBackend::runReceivingContainerRequest);
+    connect(buttonsWidget, &LayoutBase::inventory_src_container_clicked_forward, phs, &PHSBackend::inventorySrcContainerRequest);
+     */
 private slots:
     void onReadyRead();
     void connectionHandler();

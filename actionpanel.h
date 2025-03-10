@@ -17,9 +17,32 @@ public:
 
 private slots:
     void on_ean_button_clicked();
+    void on_inventory_tote_clicked();
+
+    void on_inventory_product_clicked();
+
+    void on_mark_KJ_clicked();
+
+    void on_close_carrier_clicked();
+
+    void on_reprint_clicked();
+
+    void on_run_receiving_container_clicked();
+
+    void on_inventory_src_container_clicked();
 
 signals:
     void ean_button_clicked();
+    void inventory_tote_clicked();
+    void inventory_product_clicked();
+    void mark_KJ_clicked();
+    void close_carrier_clicked();
+    void reprint_clicked();
+    void run_receiving_container_clicked();
+    void inventory_src_container_clicked();
+
+public slots:
+    void buttonsUnlocked(bool state);
 
 private:
     Ui::ActionPanel *ui;

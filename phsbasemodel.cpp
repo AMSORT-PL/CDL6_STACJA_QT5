@@ -1,4 +1,3 @@
-
 #include "phsbasemodel.h"
 
 PHSBaseModel::PHSBaseModel(const QVector<QString> &headers, IRowCreator* creator, QObject *parent)

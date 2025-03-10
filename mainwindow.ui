@@ -63,6 +63,27 @@
          <number>6</number>
         </property>
         <item>
+         <widget class="QLabel" name="conn_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid gray; border-radius: 2px;</string>
+          </property>
+          <property name="text">
+           <string>conn_status</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QLabel" name="station_name">
           <property name="minimumSize">
            <size>

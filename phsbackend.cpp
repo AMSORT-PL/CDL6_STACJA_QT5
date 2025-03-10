@@ -122,18 +122,6 @@ QString PHSBackend::getIpString()
     return ipInfo;
 }
 
-
-PHSBackend::PHSBackend(QHostAddress const& host, quint16 port, IAuthenticator* authenticator, QObject *parent)
-    : QObject(parent)
-    , connectionHost(host)
-    , connectionPort(port)
-    , connectionAuthenticator(authenticator)
-    , inFrameLen(NOT_IN_FRAME)
-    , identifier()
-{
-    socket.connectToHost(connectionHost, connectionPort);
-}
-
 PHSBackend::PHSBackend(QHostAddress const& host, quint16 port, IAuthenticator* authenticator, QByteArray const & _ident, QObject *parent)
     : QObject(parent)
     , connectionHost(host)
@@ -142,7 +130,61 @@ PHSBackend::PHSBackend(QHostAddress const& host, quint16 port, IAuthenticator* a
     , inFrameLen(NOT_IN_FRAME)
     , identifier(_ident)
 {
+    ///SETTING TIMERS
+    reconnect.setSingleShot(true);
+    reconnect.setInterval(ConfigHandler::getPhsReconnectInterval());
+
+    ///SETTING CONNECTS
+    connect(&reconnect, &QTimer::timeout, this, [this](){socket.connectToHost(connectionHost, connectionPort);});
+    connect(&socket, SIGNAL(stateChanged(QAbstractSocket::SocketState)), this, SLOT(connectionHandler()));
+    connect(&socket, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
+
     socket.connectToHost(connectionHost, connectionPort);
+}
+
+void PHSBackend::markLocationRequest(int locationId) {
+    qInfo() << "Request to mark location" << locationId;
+    callPhsProc(101, QVector<QVariant>{locationId});
+}
+
+void PHSBackend::inventoryToteRequest() {
+    qInfo() << "Inventory tote request";
+    callPhsProc(103, QVector<QVariant>{0});
+}
+
+void PHSBackend::inventoryProductRequest() {
+    qInfo() << "Inventory product request";
+    callPhsProc(104, QVector<QVariant>{0});
+}
+
+void PHSBackend::markKJRequest() {
+    qInfo() << "Mark KJ request";
+    callPhsProc(105, QVector<QVariant>{0});
+}
+
+void PHSBackend::reprintRequest() {
+    qInfo() << "Reprint request";
+    callPhsProc(106, QVector<QVariant>{0});
+}
+
+void PHSBackend::closeCarrierRequest() {
+    qInfo() << "Close carrier request";
+    callPhsProc(107, QVector<QVariant>{0});
+}
+
+void PHSBackend::runReceivingContainerRequest() {
+    qInfo() << "Run receiving container request";
+    callPhsProc(108, QVector<QVariant>{0});
+}
+
+void PHSBackend::inventorySrcContainerRequest() {
+    qInfo() << "Inventory source container request";
+    callPhsProc(109, QVector<QVariant>{0});
+}
+
+void PHSBackend::sendEan(QString code) {
+    qInfo() << "EAN" << code <<"sent";
+    callPhsProc(110, QVector<QVariant>{code});
 }
 
 void PHSBackend::connectionHandler() {
@@ -162,7 +204,6 @@ void PHSBackend::connectionHandler() {
             qInfo() << "Unconnected";
             frameToSend.clear();
             inFrameLen = NOT_IN_FRAME;
-            emit dataCheck();
             emit noConnection();
             reconnect.start();
             break;
@@ -172,16 +213,6 @@ void PHSBackend::connectionHandler() {
         default:
         break;
     }
-}
-
-void PHSBackend::sendEan(QString code) {
-    qInfo() << "EAN" << code <<"sent";
-     callPhsProc(108, QVector<QVariant>{code});
-}
-
-void PHSBackend::markLocationRequest(int locationId) {
-    qInfo() << "Request to mark location" << locationId;
-    callPhsProc(101, QVector<QVariant>{locationId});
 }
 
 void PHSBackend::getBattInfo(QByteArray battery, quint8 currentBat) {
@@ -397,30 +428,37 @@ void PHSBackend::onProtocolFrame(QDataStream& stream) {
 
             switch(id) {
             case 10: // mark location
+                qInfo() << "Mark location opcode";
                 emit markLocation(params[0].toInt());
                 break;
 
             case 11: // unmark location
+                qInfo() << "Unmark location opcode";
                 emit unmarkLocation();
                 break;
 
             case 12: // set user name
+                qInfo() << "Set username opcode:" << params[0].toString();
                 emit setUsername(params[0].toString());
                 break;
 
             case 13: // set andon state
+                qInfo() << "Set andon state opcode";
                 emit sentAndonState(params[0].toBool(), params[1].toBool());
                 break;
 
             case 14: // assign carrier to location
+                qInfo() << "Assign carrier to location opcode";
                 emit assignCarrierToLocation(params[0].toString(), params[1].toInt());
                 break;
 
             case 15: // set carrier on way
+                qInfo() << "Set carriers on way opcode";
                 emit setCarriersOnWay(params[0].toInt());
                 break;
 
             case 16: // set source carrier
+                qInfo() << "Set source carrieropcode";
                 emit setSourceCarrier(params[0].toString());
                 break;
             }

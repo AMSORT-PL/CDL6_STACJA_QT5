@@ -3,13 +3,9 @@
 Layout1::Layout1(PHSBackend* _phs, QWidget *parent) :
       LayoutBase(parent),
       ui(new Ui::Layout1),
-      phs(_phs)
+      phs(_phs),
+      markedButton(nullptr)
 {
-    QSettings settings(QApplication::applicationDirPath() + "/config.ini", QSettings::IniFormat);
-
-    name = settings.value("PHS/name", "P00").toString();
-
-    //QWidget#Layout1 { border: 1px solid gray;}
 
     this->setStyleSheet("border: 1px solid gray;");
 
@@ -25,6 +21,15 @@ Layout1::Layout1(PHSBackend* _phs, QWidget *parent) :
    ui->action_frame->setLayout(layout);
 
    connect(actionPanel, &ActionPanel::ean_button_clicked, this, &Layout1::ean_button_clicked);
+   connect(actionPanel, &ActionPanel::inventory_tote_clicked, this, &Layout1::inventory_tote_clicked);
+   connect(actionPanel, &ActionPanel::inventory_product_clicked, this, &Layout1::inventory_product_clicked);
+   connect(actionPanel, &ActionPanel::mark_KJ_clicked, this, &Layout1::mark_KJ_clicked);
+   connect(actionPanel, &ActionPanel::close_carrier_clicked, this, &Layout1::close_carrier_clicked);
+   connect(actionPanel, &ActionPanel::reprint_clicked, this, &Layout1::reprint_clicked);
+   connect(actionPanel, &ActionPanel::run_receiving_container_clicked, this, &Layout1::run_receiving_container_clicked);
+   connect(actionPanel, &ActionPanel::inventory_src_container_clicked, this, &Layout1::inventory_src_container_clicked);
+
+   connect(this, &LayoutBase::buttonsUnlocked, actionPanel, &ActionPanel::buttonsUnlocked);
 }
 
 QList<QPushButton*> Layout1::getButtons() const {
@@ -33,6 +38,34 @@ QList<QPushButton*> Layout1::getButtons() const {
 
 void Layout1::ean_button_clicked() {
     emit ean_button_clicked_forward();
+}
+
+void Layout1::inventory_tote_clicked() {
+    emit inventory_tote_clicked_forward();
+}
+
+void Layout1::inventory_product_clicked() {
+    emit inventory_product_clicked_forward();
+}
+
+void Layout1::mark_KJ_clicked() {
+    emit mark_KJ_clicked_forward();
+}
+
+void Layout1::close_carrier_clicked() {
+    emit close_carrier_clicked_forward();
+}
+
+void Layout1::reprint_clicked() {
+    emit reprint_clicked_forward();
+}
+
+void Layout1::run_receiving_container_clicked() {
+    emit run_receiving_container_clicked_forward();
+}
+
+void Layout1::inventory_src_container_clicked() {
+    emit inventory_src_container_clicked_forward();
 }
 
 void Layout1::assignButtons() {
@@ -71,7 +104,49 @@ void Layout1::buttonClicked()
 
 void Layout1::markLocation(int locationId) {
     qInfo() << "Layout1: Marking location:" << locationId;
+
+    QPushButton* button = getButton(locationId);
+    if (!button) {
+        qWarning() << "Button for location" << locationId << "not found!";
+        return;
+    }
+
+    if(markedButton && button == markedButton) {
+        unmarkLocation();
+        return;
+    }
+    else if (markedButton) {
+        unmarkLocation();
+    }
+
+    button->setStyleSheet(ME::MARKED);
+    markedButton = button;
+
+    emit buttonsUnlocked(true);
 }
+
+void Layout1::unmarkLocation() {
+    if(markedButton != nullptr) {
+        qInfo() << "Unmarking location no." << markedButton->property("id").toInt();
+
+        markedButton->setStyleSheet(ME::BASE);
+        markedButton = nullptr;
+        emit buttonsUnlocked(false);
+    }
+}
+
+QPushButton* Layout1::getButton(int locationId) {
+    auto it = std::find_if(buttons.begin(), buttons.end(), [&](QPushButton* btn) {
+        return btn->property("id") == locationId;
+    });
+
+    if (it != buttons.end()) {
+        return *it;
+    }
+
+    return nullptr;
+}
+
 
 Layout1::~Layout1() {
     delete ui;

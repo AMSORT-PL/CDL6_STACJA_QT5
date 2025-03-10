@@ -22,13 +22,12 @@ int main(int argc, char *argv[])
     QByteArray id;
 
     // Setting with config.ini //
+    ConfigHandler::initialize(QCoreApplication::applicationDirPath() + "/config.ini");
     qInfo() << "Config created";
 
-    ConfigHandler config(QCoreApplication::applicationDirPath() + "/config.ini");
-
-    QString hostname = config.getHostname();
-    quint16 port = config.getPort();
-    QString name = config.getName();
+    QString hostname = ConfigHandler::getHostname();
+    quint16 port = ConfigHandler::getPort();ConfigHandler::initialize(QCoreApplication::applicationDirPath() + "/config.ini");
+    QString name = ConfigHandler::getName();
 
     qInfo() << "PHS IP: " << hostname;
     qInfo() << "PHS port: "<< port;

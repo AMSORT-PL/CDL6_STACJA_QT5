@@ -7,15 +7,16 @@
 class ConfigHandler
 {
 public:
-    ConfigHandler(const QString &configPath);
-    QString getHostname() const;
-    quint16 getPort() const;
-    QString getName() const;
-    bool hasFullScreen() const;
-    bool hasScreensaver() const;
+    static void initialize(const QString &configPath);
+
+    static QString getHostname();
+    static quint16 getPort();
+    static QString getName();
+    static quint16 getPhsReconnectInterval();
 
 private:
-    QSettings settings;
+    ConfigHandler() = default;
+    static QSettings* settings;
 };
 
 #endif // CONFIGHANDLER_H
